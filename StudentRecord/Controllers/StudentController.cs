@@ -24,11 +24,12 @@ namespace StudentRecord.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddStudentViewModel viewModel)
         {
+            
             var student = new Student
             {
                 Name = viewModel.Name,
-                Email = viewModel.Email,
                 Phone = viewModel.Phone,
+                Email = viewModel.Email,
                 subscribed = viewModel.subscribed
             };
             await dbContext.Students.AddAsync(student);
