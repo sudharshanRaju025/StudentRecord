@@ -1,35 +1,25 @@
-﻿@*
+﻿@model StudentRecord.Models.AddStudentViewModel
 
-*@
+<!--It is the HTML Page-->
 
-@model StudentRecord.Models.AddStudentViewModel
+<h2>Add New Student</h2>
 
-<form>
-
-
-	<h1>Add Student</h1>
-
-	<div class="mt-3">
-		<label class="form-label">Name</label>
-		<input type="text" class="form-control" asp-for="Name"/>
-	</div>
-
-	<div class="mt-3">
-		<label class="form-label">Phone</label>
-		<input type="text" class="form-control" asp-for="Phone" />
-	</div>
-
-	<div class="mt-3">
-		<label class="form-label">Email</label>
-		<input type="text" class="form-control" asp-for="Email"/>
-	</div>
-
-	<div class="mt-3">
-		<input type="checkbox" class="form-check-input" id="subscribed" asp-for="subscribed"/>
-		<label class="form-check-label" for="subscribed">subscribed</label>
-	</div>
-
-	<div class="mt-3">
-		<button type="submit" class="btn btn-primary">Save</button>
-	</div>
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" />
+    </div>
+    <div class="form-group">
+        <label for="Phone">Phone</label>
+        <input type="text" class="form-control" id="Phone" name="Phone" />
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" />
+    </div>
+    <div class="form-group">
+        <label for="Subscribed">Subscribed</label>
+        <input type="checkbox" id="Subscribed" name="Subscribed" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
