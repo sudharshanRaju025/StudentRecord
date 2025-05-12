@@ -7,7 +7,7 @@ namespace StudentRecord.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentApiController : ControllerBase
+    public class StudentRecord: ControllerBase
     {
         // Static data of students
         private static List<Student> Students = new List<Student>
@@ -53,10 +53,11 @@ namespace StudentRecord.Controllers
             return Ok(Students);
         }
 
+        [HttpGet("{id}")]
         //  GET By Id.
         public ActionResult<Student> GetById(int id)
         {
-            var student = Students.FirstOrDefault(s => s.Id == id);
+            var student = Students.First(s => s.Id == id);
 
             if (student == null)
             {
@@ -68,17 +69,16 @@ namespace StudentRecord.Controllers
 
 
         //  POST Method
-        private static int NextId = 1;
-
         [HttpPost]
         public IActionResult Add(Student student)
         {
-            student.Id = NextId++; // Simpler but less flexible
+            student.Id = Students.Any() ? Students.Max(s => s.Id) + 1 : 1;
             Students.Add(student);
             return CreatedAtAction(nameof(GetById), new { id = student.Id }, student);
         }
 
-        // 🔹 PUT (Update the existing data.
+
+        //PUT Method
         [HttpPut("{id}")]
         public IActionResult Update(int id, Student updatedStudent)
         {
